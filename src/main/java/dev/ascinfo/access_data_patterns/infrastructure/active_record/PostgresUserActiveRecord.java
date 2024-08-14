@@ -82,6 +82,7 @@ public class PostgresUserActiveRecord {
     try (PreparedStatement ps = connection.prepareStatement("DELETE FROM \"user\" WHERE id = ?")) {
       ps.setString(1, this.id);
       ps.executeUpdate();
+      cleanFields();
     } catch (SQLException e) {
       e.printStackTrace();
     }
