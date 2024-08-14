@@ -20,8 +20,13 @@ public class PostgresUserDAOAdapter implements UserDAO {
   }
 
   @Override
-  public User getById(int id) {
-    return null;
+  public User getById(UUID id) {
+    return namedParameterJdbcTemplate.query("SELECT * FROM \"user\" WHERE id = :id",
+        Map.of("id", id.toString()),
+        rs -> {
+          rs.next();
+          return new User(UUID.fromString(rs.getString("id")), rs.getString("username"), rs.getString("email"));
+        });
   }
 
   @Override
@@ -41,7 +46,7 @@ public class PostgresUserDAOAdapter implements UserDAO {
   }
 
   @Override
-  public void delete(int id) {
+  public void delete(UUID id) {
 
   }
 }
