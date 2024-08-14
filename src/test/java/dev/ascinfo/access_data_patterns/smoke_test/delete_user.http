@@ -1,4 +1,4 @@
 ### GET request to example server
-DELETE http://localhost:8080/active_record/user?id=5813c72f-ed73-42b7-ad06-8b952d697267
+DELETE http://localhost:8080/{{path}}/user?id=6ad8f698-69fa-4c84-903d-bb903ad69190
 
 ###

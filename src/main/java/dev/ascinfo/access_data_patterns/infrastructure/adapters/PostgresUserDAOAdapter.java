@@ -48,6 +48,6 @@ public class PostgresUserDAOAdapter implements UserDAO {
 
   @Override
   public void delete(UUID id) {
-
+    namedParameterJdbcTemplate.update("DELETE FROM \"user\" WHERE id = :id", Map.of("id", id.toString()));
   }
 }

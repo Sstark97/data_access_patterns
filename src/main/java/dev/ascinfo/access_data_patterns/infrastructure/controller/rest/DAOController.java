@@ -6,6 +6,7 @@ import dev.ascinfo.access_data_patterns.domain.model.User;
 import dev.ascinfo.access_data_patterns.infrastructure.adapters.PostgresUserDAOAdapter;
 import dev.ascinfo.access_data_patterns.infrastructure.dto.UserDto;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -37,6 +38,12 @@ public class DAOController {
   @PutMapping("/user")
   public ResponseEntity<Void> updateUser(@RequestBody User user) {
     daoAdapter.update(user);
+    return ResponseEntity.ok().build();
+  }
+
+  @DeleteMapping("/user")
+  public ResponseEntity<Void> deleteUser(@RequestParam UUID id) {
+    daoAdapter.delete(id);
     return ResponseEntity.ok().build();
   }
 }
