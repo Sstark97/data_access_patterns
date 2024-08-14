@@ -42,7 +42,8 @@ public class PostgresUserDAOAdapter implements UserDAO {
 
   @Override
   public void update(User user) {
-
+    namedParameterJdbcTemplate.update("UPDATE \"user\" SET username = :username, email = :email WHERE id = :id",
+        Map.of("id", user.id().toString(), "username", user.username(), "email", user.email()));
   }
 
   @Override

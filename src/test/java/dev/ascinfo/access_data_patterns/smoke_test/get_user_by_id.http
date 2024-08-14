@@ -1,4 +1,4 @@
 ### GET request to example server
-GET http://localhost:8080/{{path}}/user?id=232f9914-9fc8-4252-bd21-09d4dfb19aa5
+GET http://localhost:8080/{{path}}/user?id=d56f8be6-67f3-43cb-ab69-1115653144af
 
 ###

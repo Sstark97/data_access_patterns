@@ -1,9 +1,9 @@
 ### GET request to example server
-PUT http://localhost:8080/active_record/user
+PUT http://localhost:8080/{{path}}/user
 Content-Type: application/json
 
 {
-  "id": "e520b22b-68d7-4552-b723-a2af2880dc55",
+  "id": "d56f8be6-67f3-43cb-ab69-1115653144af",
   "username": "Jon Doe",
   "email": "jon@gmail.com"
 }
