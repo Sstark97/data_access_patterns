@@ -1,5 +1,6 @@
 package dev.ascinfo.access_data_patterns.infrastructure.controller.rest;
 
+import java.util.List;
 import java.util.UUID;
 
 import dev.ascinfo.access_data_patterns.domain.model.User;
@@ -33,6 +34,11 @@ public class DAOController {
   @GetMapping("/user")
   public ResponseEntity<User> getUser(@RequestParam UUID id) {
     return ResponseEntity.ok(daoAdapter.getById(id));
+  }
+
+  @GetMapping("/user/all")
+  public ResponseEntity<List<User>> getAllUsers() {
+    return ResponseEntity.ok(daoAdapter.getAll());
   }
 
   @PutMapping("/user")
