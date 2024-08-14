@@ -34,9 +34,8 @@ public class PostgresUserActiveRecord {
     }
   }
 
-  // Método para encontrar un usuario por su ID (debería ser estático)
   public User findById(UUID id) {
-    try(PreparedStatement ps = connection.prepareStatement("SELECT * FROM user WHERE id = ?")) {
+    try(PreparedStatement ps = connection.prepareStatement("SELECT * FROM \"user\" WHERE id = ?")) {
       ps.setString(1, id.toString());
       ResultSet rs = ps.executeQuery();
       if (rs.next()) {
@@ -49,7 +48,6 @@ public class PostgresUserActiveRecord {
     return null;
   }
 
-  // Método para guardar un nuevo usuario
   public void save() {
     this.id = UUID.randomUUID().toString();
     try (PreparedStatement ps = connection.prepareStatement(
@@ -65,10 +63,9 @@ public class PostgresUserActiveRecord {
     }
   }
 
-  // Método para actualizar un usuario existente
   public void update() {
     try (PreparedStatement ps = connection.prepareStatement(
-        "UPDATE user SET username = ?, email = ? WHERE id = ?")) {
+        "UPDATE \"user\" SET username = ?, email = ? WHERE id = ?")) {
       ps.setString(1, this.username);
       ps.setString(2, this.email);
       ps.setString(3, this.id);
@@ -79,9 +76,8 @@ public class PostgresUserActiveRecord {
     }
   }
 
-  // Método para eliminar un usuario existente
   public void delete() {
-    try (PreparedStatement ps = connection.prepareStatement("DELETE FROM user WHERE id = ?")) {
+    try (PreparedStatement ps = connection.prepareStatement("DELETE FROM \"user\" WHERE id = ?")) {
       ps.setString(1, this.id);
       ps.executeUpdate();
     } catch (SQLException e) {
