@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: access_data_patterns
+  config:
+    import:
+      - application-secrets.yml
