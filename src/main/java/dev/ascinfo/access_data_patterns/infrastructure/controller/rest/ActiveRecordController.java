@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import dev.ascinfo.access_data_patterns.domain.model.User;
 import dev.ascinfo.access_data_patterns.infrastructure.active_record.PostgresUserActiveRecord;
+import dev.ascinfo.access_data_patterns.infrastructure.dto.UserDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class ActiveRecordController {
   }
 
   @PostMapping("/user")
-  public ResponseEntity<Void> createUser(@RequestBody User user) {
+  public ResponseEntity<Void> createUser(@RequestBody UserDto user) {
     postgresUserActiveRecord.setUsername(user.username());
     postgresUserActiveRecord.setEmail(user.email());
     postgresUserActiveRecord.save();

@@ -1,5 +1,5 @@
 ### GET request to example server
-POST http://localhost:8080/active_record/user
+POST http://localhost:8080/{{path}}/user
 Content-Type: application/json
 
 {
