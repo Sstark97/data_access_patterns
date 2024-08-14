@@ -64,15 +64,17 @@ public class PostgresUserActiveRecord {
   }
 
   public void update() {
-    try (PreparedStatement ps = connection.prepareStatement(
-        "UPDATE \"user\" SET username = ?, email = ? WHERE id = ?")) {
-      ps.setString(1, this.username);
-      ps.setString(2, this.email);
-      ps.setString(3, this.id);
-      ps.executeUpdate();
-      cleanFields();
-    } catch (SQLException e) {
-      e.printStackTrace();
+    if(userExists()) {
+      try (PreparedStatement ps = connection.prepareStatement(
+          "UPDATE \"user\" SET username = ?, email = ? WHERE id = ?")) {
+        ps.setString(1, this.username);
+        ps.setString(2, this.email);
+        ps.setString(3, this.id);
+        ps.executeUpdate();
+        cleanFields();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
     }
   }
 
@@ -83,6 +85,17 @@ public class PostgresUserActiveRecord {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+  }
+
+  private boolean userExists() {
+    try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM \"user\" WHERE id = ?")) {
+      ps.setString(1, this.id);
+      ResultSet rs = ps.executeQuery();
+      return rs.next();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return false;
   }
 
   private void cleanFields() {

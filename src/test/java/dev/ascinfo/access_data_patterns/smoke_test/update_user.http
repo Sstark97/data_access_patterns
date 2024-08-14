@@ -1,0 +1,11 @@
+### GET request to example server
+PUT http://localhost:8080/active_record/user
+Content-Type: application/json
+
+{
+  "id": "e520b22b-68d7-4552-b723-a2af2880dc55",
+  "username": "Jon Doe",
+  "email": "jon@gmail.com"
+}
+
+###
